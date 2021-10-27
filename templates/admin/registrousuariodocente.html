@@ -1,0 +1,45 @@
+{% extends 'admin/baseadmin.html' %} 
+
+{% block infouser %}
+<div class="text-center">
+      <img src="{{ url_for('static', filename='img/user.png') }}" alt="Logo ECIJG" class="img-fluid img-thumbnail rounded" />
+      <p class="text-center"><strong><a class="nav-link" href="#">Editar</a></strong></p> 
+</div>
+{% endblock %}
+
+{% block areatrabajo %}
+<h2>Registro de Usuarios Docentes</h2>
+<div class="container-fluid">
+    <div class="row featurette">
+      <form action="{{ url_for('registrousuariodocente') }}" method="post" name="formRegistro" onsubmit="validar_formulario();" >
+          
+        <div class="mb-3">
+            {{ form.nombre.label(class_="form-label")  }} 
+            {{ form.nombre(class="form-control")  }}  
+        </div>
+
+        <div class="mb-3">                    
+            {{ form.apellidos.label(class_="form-label")   }} 
+            {{ form.apellidos(class="form-control")   }}  
+        </div>
+
+        <div class="mb-3">                   
+          {{ form.codigo.label(class_="form-label")   }} 
+          {{ form.codigo(class="form-control")   }}  
+      </div>
+      <div class="mb-3">                   
+        {{ form.correo.label(class_="form-label")   }} 
+        {{ form.correo(class="form-control")   }}  
+    </div>
+    <div class="mb-3">                 
+        {{ form.materia.label(class_="form-label")   }} 
+        {{ form.materia(class="form-control")   }}  
+    </div>
+        <br />        
+        <div class="mb-3">
+            {{ form.guardar(class="btn btn-primary")  }}                        
+        </div>
+    </form>
+    </div>
+  </div>
+{% endblock %}

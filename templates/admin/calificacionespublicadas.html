@@ -1,0 +1,102 @@
+{% extends 'admin/baseadmin.html' %}
+<!-- aun no sé como se ve-->
+{% block infouser %}
+<div class="text-center">
+      <img src="{{ url_for('static', filename='img/user.png') }}" alt="Logo ECIJG" class="img-fluid img-thumbnail rounded" />
+      <p class="text-center"><strong><a class="nav-link" href="#">Editar</a></strong></p> 
+</div>
+{% endblock %}
+
+{% block areatrabajo %}
+    <h3 class="text-center">Historial de publicaciones</h3>
+    <div class="container">
+      <div class="row">
+        <div class="col-1">
+          <img src="{{ url_for('static', filename='img/file.png') }}" alt="file" class="img-fluid rounded" />
+        </div>
+        <div class="col-11 text-xl-start">
+          <h4>Calificaciones</h4>
+        </div>
+      </div>
+    </div>
+    <br />
+    <!--  listas para programas-->
+    <div class="col">
+      <div class="btn-group">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            {%if session['nameprog']%}
+              {{session['nameprog']}}
+            {%else%}
+              seleccione el programa
+            {%endif%}
+            
+          </button>
+          <ul class="dropdown-menu">
+            {%for id, name in session['programasfull']%}
+            <li><a class="dropdown-item" href="/calificacionespublicadas/{{id}}" id="programa">{{name}}</a></li>
+            {%endfor%}
+          </ul>
+      </div>
+    </div>
+    <br />
+     <!--  listas para Cursos-->
+     {%if session['cursofull']%}
+     <div class="col">
+      <div class="btn-group">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            {%if session['namecurso']%}
+              {{session['namecurso'][0]}}
+            {%else%}
+              seleccione el Curso
+            {%endif%}
+          </button>
+          <ul class="dropdown-menu">
+            {%for id, name in session['cursofull']%}
+            <li><a class="dropdown-item" href="/calificacionespublicadas/{{session['id_programa']}}/{{id}}" id="curso">{{name}}</a></li>
+            {%endfor%}
+          </ul>
+      </div>
+    </div>
+    <br />
+    {%endif%}
+    {%if session['actividad']%}
+    <div class="col">
+      <div class="btn-group">
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            {%if session['desc']%}
+              {{session['desc']}}
+            {%else%}
+              seleccione la actividad
+            {%endif%}
+          </button>
+          <ul class="dropdown-menu">
+            {%for id, desc in session['actividad']%}
+            <li><a class="dropdown-item" href="/calificacionespublicadas/{{session['id_programa']}}/{{session['id_curso']}}/{{id}}" id="actividad">{{desc}}</a></li>
+            {%endfor%}
+          </ul>
+      </div>
+    </div>
+    <br />  
+    {%endif%} 
+    {%if session['actividadSeleccionada']%}
+     <strong>Nombre de la Actividad: </strong>{{session['desc']}}
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Alumno</th>
+          <th scope="col">Calificación</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for activida, desc, nota, nombre, appellido in session['actividadSeleccionada'] %}
+          <tr> 
+            <td>{{nombre}} {{appellido}}</td>
+            <td>{{nota}}</td>
+          </tr>
+        {%endfor%}
+      </tbody>
+    </table>
+    {%endif%} 
+    <br />
+{% endblock %}
+

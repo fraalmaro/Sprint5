@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+    <head>
+
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        {% if titulo %}
+            <title>{{ titulo }} - Mision TIC</title>
+        {% else %}
+            <title>Mision TIC</title>
+        {% endif %}
+
+        <script src="{{ url_for('static', filename='js/bootstrap.js') }}"> </script>
+        
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}" type="text/css" >
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/carousel.css') }}" type="text/css" >
+        <style>
+            .bd-placeholder-img {
+              font-size: 1.125rem;
+              text-anchor: middle;
+              -webkit-user-select: none;
+              -moz-user-select: none;
+              user-select: none;
+            }
+      
+            @media (min-width: 768px) {
+              .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+              }
+            }
+
+            .carousel-item > img {height: 25rem; }
+            .carousel-item {height: 25rem; }
+            .carousel-caption{background:rgba(0,0,0,0.4)}
+            .flex-caption {
+              width: 100%;
+              padding: 1%;
+              position: absolute;
+              left: 0;
+              bottom: 0;
+              background: rgba(0,0,0,0.4);
+              text-align: justify;
+              font-size: 14px;
+              line-height: 115%;
+              color: white;
+            }
+          </style>
+          
+    </head>
+
+    <body>
+        <a name="inicio"></a>
+        <header>
+            <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+              <div class="container-fluid">
+                <a class="navbar-brand" href="index">SGN</a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                  <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarCollapse">
+                  <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                    <li class="nav-item">
+                      <a class="nav-link active" aria-current="page" href="index">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="contacto">Contacto</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="ingresar">Ingresar</a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </nav>
+          </header>
+
+        <main>
+            <div id="myCarousel" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-indicators">
+                  <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+                  <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
+                  <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img src="../static/img/noticias/nota1.png" class="d-block w-100" alt="nota1" />
+            
+                    <div class="container">
+                      <div class="flex-caption text-start">
+                        <h3>Ecoamigable, la palabra que describe a la Escuela</h3>
+                        <p>Sus construcciones guardan con mayor calidad la relación de la edificación con el entorno y el desarrollo urbano. Por otro lado, el campus es un ejemplo del uso eficiente y racional de la energía, el ahorro y utilización del agua. </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img src="../static/img/noticias/nota2.jpg" class="d-block w-100" alt="nota2" />
+
+            
+                    <div class="container">
+                      <div class="flex-caption">
+                        <h3>La Escuela es una institución de educación superior de carácter tecnológico.</h3>
+                        <p>Cultura académica enmarcada en la excelencia, la creatividad y la innovación. </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="carousel-item">
+                    <img src="../static/img/noticias/nota3.jpg" class="d-block w-100" alt="nota3" />
+
+            
+                    <div class="container">
+                      <div class="flex-caption">
+                        <h4>20 de octubre de 1972 nace un ambicioso proyecto educativo, formar ingenieros de excelencia.</h4>
+                        <p>Primero, nació el Programa de Ingeniería Civil, luego se fueron sumando los programas de Ingeniería Eléctrica e Ingeniería en Sistemas; posteriormente, una vez que la Escuela ocupó un merecido puesto de honor entre las instituciones de educación superior del país, se incluyeron los programas de Ingeniería Industrial, Ingeniería Electrónica y Economía.</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+            </div>
+            <!-- Marketing messaging and featurettes
+            ================================================== -->
+            <!-- Wrap the rest of the page in another container to center all the content. -->
+
+            <div class="container marketing">
+
+              {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                  <div class="alert alert-danger" role="alert"> 
+                      <ul class="flashes">
+                        {% for message in messages %}
+                          <li>{{ message }}</li>
+                        {% endfor %}
+                      </ul>
+                  </div>
+                {% endif %}
+              {% endwith %} {{error}}
+              <!-- START THE FEATURETTES -->
+                {% block contenido %}
+ 
+                {% endblock %}  
+                <div class="row featurette">
+                    <div class="col-md-5">
+                      <div class="embed-responsive embed-responsive-16by9">
+                        <iframe class="embed-responsive-item" width="100%" height="400" src="https://www.youtube.com/embed/k6w5d-pmMjw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                      </div>
+                    </div>
+                    
+                    <div class="col-md-7">
+                      <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel" style="margin-bottom: 1rem;">
+                        <div class="carousel-inner">
+                          <div class="carousel-item active">
+                            <img src="../static/img/Campus/campus1.jpg" class="d-block w-100" alt="Campus 1" />
+                          </div>
+                          <div class="carousel-item">
+                            <img src="../static/img/Campus/campus2.png" class="d-block w-100" alt="Campus 2" />
+                          </div>
+                          <div class="carousel-item">
+                            <img src="../static/img/Campus/campus3.jpg" class="d-block w-100" alt="Campus 3" />
+                          </div>
+                          <div class="carousel-item">
+                            <img src="../static/img/Campus/campus4.jpg" class="d-block w-100" alt="Campus 4" />
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+             
+                <!-- /END THE FEATURETTES -->
+            </div><!-- /.container -->
+            <hr /> 
+
+            <!-- FOOTER -->
+            <footer class="container">
+                <p class="float-end"><a href="#inicio">Back to top</a></p>
+                <p>&copy; 2017–2021 Company, Inc. &middot; Escuela Colombiana de Ingeniería Julio Garavito. Personería Jurídica 086 de enero 19 de 1973. Renovación de Acreditación Institucional de Alta Calidad. Resolución 002710 del 18 de marzo de 2019 (vigencia de 6 años). Vigilada por Mineducación.</p>
+            </footer>
+        </main>        
+    </body>
+
+</html>
