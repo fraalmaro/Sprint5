@@ -17,7 +17,7 @@ app.secret_key = '_5#y2L"F4Q8z\n\xec]/'
 def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
-        if g.user is None:
+        if session['user_logueado'] is None:
             return redirect(url_for('ingresar'))
         return view(**kwargs)
     return wrapped_view
